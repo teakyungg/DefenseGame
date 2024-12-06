@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Rigidbody rb;
-    [SerializeField] float bulletspeed = 30f;
+    public string EnemyTag;
 
-    void Awake()
+    void OnTriggerEnter(Collider other)
     {
-        rb = GetComponent<Rigidbody>();
+        if (other.tag == EnemyTag) gameObject.SetActive(false);
     }
 
-    void Start()
+    public void DestoryDelay()
     {
-        rb.AddForce(transform.right * bulletspeed , ForceMode.Impulse);
-
-        Destroy(gameObject, 3f);
+        Invoke("DestoryBullet", 3f);
     }
 
+    void DestoryBullet()
+    {
+       gameObject.SetActive(false);
+    }
+
+ 
 }
