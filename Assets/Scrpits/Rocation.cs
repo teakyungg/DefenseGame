@@ -5,14 +5,16 @@ public class Rocation : MonoBehaviour   // 가장 가까운 적 방향으로 회전하는 클래
 {
     bool enemyCheck = false;
     List<Transform> enemys = new List<Transform>();
-    Transform Target;
+    [SerializeField] Transform Target;
     Player player;
+    Quaternion startRocation;
 
     public float RocationSpeed = 10f;
 
     void Awake()
     {
         player = GetComponent<Player>();
+        startRocation = transform.rotation;
     }
 
     void Reset()
@@ -28,16 +30,6 @@ public class Rocation : MonoBehaviour   // 가장 가까운 적 방향으로 회전하는 클래
     {
         if (enemyCheck) return;
         if (other.tag == player.EnemyTag) enemys.Add(other.transform);
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-
-        if(Target && other.gameObject == Target.transform.gameObject) // 공격하던 적이 범위를 나갔을 때 
-        {
-            Reset();
-        }
-
     }
 
     void Update()
@@ -73,6 +65,13 @@ public class Rocation : MonoBehaviour   // 가장 가까운 적 방향으로 회전하는 클래
 
             player.Attack = true;
         }
+
+        else if(!Target)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, startRocation, Time.deltaTime * RocationSpeed);
+        }
+
+
     }
 
 }
