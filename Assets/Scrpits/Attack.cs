@@ -5,8 +5,9 @@ public class Attack : MonoBehaviour // 공격 담당
 {
     [SerializeField] Transform Gun;
 
+    [SerializeField] int bulletType;
     [SerializeField] float bulletspeed = 30f;
-    [SerializeField]float delay = 0.2f;
+    [SerializeField] float delay = 0.2f;
     float attacktrue = 0;
     Player player;
 
@@ -25,7 +26,7 @@ public class Attack : MonoBehaviour // 공격 담당
             Quaternion pos = Gun.rotation;
             pos.z = 0f;
 
-            GameObject bullet = ObjectPool.objectpool.ReturnBullet();
+            GameObject bullet = ObjectPool.objectpool.GetObject(bulletType);
 
             bullet.transform.position = start_pos;
             bullet.transform.rotation = pos;
