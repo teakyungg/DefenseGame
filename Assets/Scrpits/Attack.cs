@@ -6,7 +6,6 @@ public class Attack : MonoBehaviour // 공격 담당
     [SerializeField] Transform Gun;
 
     [SerializeField] int bulletType;
-    [SerializeField] float bulletspeed = 30f;
     [SerializeField] float delay = 0.2f;
     float attacktrue = 0;
     Player player;
@@ -30,12 +29,7 @@ public class Attack : MonoBehaviour // 공격 담당
 
             bullet.transform.position = start_pos;
             bullet.transform.rotation = pos;
-
-            bullet.GetComponent<Bullet>().EnemyTag = player.EnemyTag; 
-            bullet.GetComponent<Bullet>().DestoryDelay();
-
-            bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletspeed, ForceMode.Impulse);
+            bullet.tag = gameObject.tag;
         }
 
         
