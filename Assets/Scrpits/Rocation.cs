@@ -1,20 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocation : MonoBehaviour   // 가장 가까운 적 방향으로 회전하는 클래스
+
+public class Rocation : MonoBehaviour , IRocation // 가장 가까운 적 방향으로 회전하는 클래스
 {
     bool enemyCheck = false;
     List<Transform> enemys = new List<Transform>();
     [SerializeField] Transform Target;
     Player player;
-    Quaternion startRocation;
 
-    public float RocationSpeed = 10f;
+    public float RocationSpeed { get; set; }
 
     void Awake()
     {
         player = GetComponent<Player>();
-        startRocation = transform.rotation;
+        RocationSpeed = 10f;
     }
 
     void Reset()
@@ -34,6 +34,30 @@ public class Rocation : MonoBehaviour   // 가장 가까운 적 방향으로 회전하는 클래
 
     void Update()
     {
+        firstTarget();
+    }
+
+    void LateUpdate()
+    {
+        if(Target) rocation(Target);
+    }
+
+
+    public void rocation(Transform target)
+    {
+        if (target)
+        {
+            Quaternion targetLocation = Quaternion.LookRotation(target.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetLocation, Time.deltaTime * RocationSpeed);
+
+            player.Attack = true;
+        }
+    }
+
+
+    public void firstTarget()
+    {
+
         if (Target && Target.gameObject.activeSelf == false) Reset();     // 공격하던 적이 비활성화 됬을때
         if (enemyCheck || enemys.Count == 0) return;
 
@@ -56,22 +80,6 @@ public class Rocation : MonoBehaviour   // 가장 가까운 적 방향으로 회전하는 클래
 
     }
 
-    void LateUpdate()
-    {
-        if (Target)
-        {
-            Quaternion targetLocation = Quaternion.LookRotation(Target.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetLocation, Time.deltaTime * RocationSpeed);
 
-            player.Attack = true;
-        }
-
-        else if(!Target)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, startRocation, Time.deltaTime * RocationSpeed);
-        }
-
-
-    }
 
 }

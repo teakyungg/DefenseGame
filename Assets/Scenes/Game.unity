@@ -1053,7 +1053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30005c1f84d216c4895ea05d7f97198f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartHP: 100
   EnemyTag: 
   Attack: 0
   AttackAniFinish: 0
@@ -1549,7 +1548,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  RocationSpeed: 10
 --- !u!114 &1533979322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1562,7 +1560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30005c1f84d216c4895ea05d7f97198f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartHP: 0
   EnemyTag: enemy
   Attack: 0
   AttackAniFinish: 0
@@ -1630,6 +1627,38 @@ Transform:
   - {fileID: 281167617}
   - {fileID: 952386579}
   m_Father: {fileID: 1670832008}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1599664222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599664223}
+  m_Layer: 0
+  m_Name: "\uD68C\uC804 \uD568\uC218 \uC778\uD130\uD398\uC774\uC2A4 \uD615\uD0DC\uB85C
+    \uACE0\uCE58\uAE30"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599664223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599664222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 615.75, y: 346.5, z: 32.342422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1631233681
 GameObject:
@@ -1947,7 +1976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  RocationSpeed: 10
 --- !u!114 &1673118966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,7 +1988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30005c1f84d216c4895ea05d7f97198f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartHP: 0
   EnemyTag: enemy
   Attack: 0
   AttackAniFinish: 0
@@ -3589,3 +3616,4 @@ SceneRoots:
   - {fileID: 1178689649}
   - {fileID: 1768399575}
   - {fileID: 1931527086}
+  - {fileID: 1599664223}

@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
     {
         if (target.tag != gameObject.tag)
         {
-            target.GetComponent<Player>().TakeDamage(damage);
+            target.GetComponent<Player>().Damage(damage);
             gameObject.SetActive(false);
         }
     }
