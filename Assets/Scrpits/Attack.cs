@@ -21,15 +21,16 @@ public class Attack : MonoBehaviour // 공격 담당
         if(player.AttackAniFinish && attacktrue < 0)
         {
             attacktrue = delay;
-            Vector3 start_pos = Gun.position + new Vector3(0,1,0);
             Quaternion pos = Gun.rotation;
-            pos.z = 0f;
+           
 
             GameObject bullet = ObjectPool.objectpool.GetObject(bulletType);
+            bullet.transform.position = Gun.position;
+            bullet.transform.rotation = Gun.rotation;
+          
 
-            bullet.transform.position = start_pos;
-            bullet.transform.rotation = pos;
-            bullet.tag = gameObject.tag;
+
+            bullet.GetComponent<Bullet>().EnemyTag = player.EnemyTag;
         }
 
         

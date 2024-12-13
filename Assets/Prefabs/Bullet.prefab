@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyTag: enemy
+  bulletspeed: 30
+  damage: 10
 --- !u!54 &3683598613356882657
 Rigidbody:
   m_ObjectHideFlags: 0

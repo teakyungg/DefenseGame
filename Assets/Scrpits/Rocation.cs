@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Rocation : MonoBehaviour , IRocation // 가장 가까운 적 방향으로 회전하는 클래스
+public class Rocation : MonoBehaviour , IRocation 
 {
     bool enemyCheck = false;
     List<Transform> enemys = new List<Transform>();

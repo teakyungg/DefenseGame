@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DamageUI : MonoBehaviour
+public class DamageUI : MonoBehaviour , IDamageUI
 {
     GameManager gameManager;
     GameObject UI;
@@ -21,24 +21,15 @@ public class DamageUI : MonoBehaviour
 
     void Start()
     {
-        PositonSetting();
-        damage_pos = Instantiate(gameManager.Damage, pos, Quaternion.identity, UI.transform).transform;
-        damage_txt = damage_pos.GetComponent<Text>();
+        GetUILocation();
     }
 
     void Update()
     {
-        PositonSetting();
-        damage_pos.position = pos;
+        GetUILocation();
     }
 
-    public void DamageTextSetting(int damage)
-    {
-        damage_txt.text = damage.ToString();
-        Debug.Log($"{damage}데미지 입음 여기 부분에 데미지 올라가는거 구현하기");
-    }
-
-    void PositonSetting()
+    public void GetUILocation()
     {
         pos = transform.position;
 
@@ -47,6 +38,15 @@ public class DamageUI : MonoBehaviour
         pos += Add;
     }
 
+    public void SetDamage(int dmg)
+    {
+        Text damage_txt = ObjectPool.objectpool.GetObject(0).GetComponent<Text>();
 
+        damage_txt.text = dmg.ToString();
+        damage_txt.transform.position = pos;
+
+        damage_txt.gameObject.SetActive(false);
+        damage_txt.gameObject.SetActive(true);
+    }
 
 }

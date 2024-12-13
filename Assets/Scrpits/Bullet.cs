@@ -15,19 +15,20 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    void FixedUpdate()
     {
-        rb.AddForce(transform.right * bulletspeed, ForceMode.Impulse);
-        Invoke("DestoryBullet", 3f);
+        rb.velocity = transform.forward * bulletspeed;
     }
 
     void OnTriggerEnter(Collider target)
     {
-        if (target.tag != gameObject.tag)
+       
+        if (target.tag == EnemyTag)
         {
             target.GetComponent<Player>().Damage(damage);
             gameObject.SetActive(false);
         }
+        
     }
 
     void DestoryBullet()

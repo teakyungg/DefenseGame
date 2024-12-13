@@ -22,6 +22,7 @@ interface IRocation  // 회전 관련 인터페이스
 
 interface IDamageUI     // 데미지 UI창에 띄우는거 관련 인터페이스
 {
-    // 오브젝트 위치에서 UI위치 찾는 함수
-    // 받은 데미지를 띄우는 함수 
+    public void GetUILocation();     // 오브젝트 위치에서 UI위치 찾는 함수
+    public void SetDamage(int dmg);  // 받은 데미지를 띄우는 함수 
+
 }

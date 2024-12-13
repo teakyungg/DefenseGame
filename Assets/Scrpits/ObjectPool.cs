@@ -5,6 +5,8 @@ using UnityEngine;
 public class ObjectType
 {
     public Component objs;      // 복사할 대상의 컴포넌트 
+    public GameObject Parents; // 부모 대상(없으면 안해도 됨)
+
     public int StartCount;      // 시작시 세팅할 오브젝트 갯수
     public Queue<Component> objList = new Queue<Component>();
 }
@@ -32,7 +34,11 @@ public class ObjectPool : MonoBehaviour
 
             for(int j = 0; j < bulletType[i].StartCount; j++)
             {
-                GameObject target = Instantiate(bulletType[i].objs.gameObject);
+                GameObject target;
+
+                if (bulletType[i].Parents) target = Instantiate(bulletType[i].objs.gameObject , bulletType[i].Parents.transform);
+                else target = Instantiate(bulletType[i].objs.gameObject);
+
                 list[i].Enqueue(target.GetComponent(bulletType[i].objs.GetType()));
                 target.SetActive(false);
             }
@@ -61,7 +67,9 @@ public class ObjectPool : MonoBehaviour
 
         if (target == null)
         {
-            target = Instantiate(bulletType[Type].objs.gameObject);
+            if (bulletType[Type].Parents) target = Instantiate(bulletType[Type].objs.gameObject , bulletType[Type].Parents.transform);
+            else target = Instantiate(bulletType[Type].objs.gameObject);
+
             list[Type].Enqueue(target.GetComponent(bulletType[Type].objs.GetType()));
         }
 

@@ -24,7 +24,7 @@ public class Player : MonoBehaviour , ICharacter
         HP -= damage;
         if (HP < 0) HP = 0;
 
-       if(DamageUI) DamageUI.DamageTextSetting(damage); // µ¥¹ÌÁö ÀÌÆåÆ® ¶ç¿ì±â
+       if(DamageUI) DamageUI.SetDamage(damage); // µ¥¹ÌÁö ÀÌÆåÆ® ¶ç¿ì±â
     }
 
     public void Heal(int num)
