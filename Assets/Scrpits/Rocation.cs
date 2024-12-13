@@ -9,11 +9,14 @@ public class Rocation : MonoBehaviour , IRocation
     [SerializeField] Transform Target;
     Player player;
 
+    Transform StartRocation;
+
     public float RocationSpeed { get; set; }
 
     void Awake()
     {
         player = GetComponent<Player>();
+        StartRocation = gameObject.transform;
         RocationSpeed = 10f;
     }
 
@@ -39,12 +42,13 @@ public class Rocation : MonoBehaviour , IRocation
 
     void LateUpdate()
     {
-        if(Target) rocation(Target);
+        rocation(Target);
     }
 
 
     public void rocation(Transform target)
     {
+      
         if (target)
         {
             Quaternion targetLocation = Quaternion.LookRotation(target.transform.position - transform.position);
@@ -52,6 +56,13 @@ public class Rocation : MonoBehaviour , IRocation
 
             player.Attack = true;
         }
+
+        else if (!target)
+        {
+            Quaternion targetLocation = Quaternion.LookRotation(StartRocation.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetLocation, Time.deltaTime * RocationSpeed);
+        }
+
     }
 
 

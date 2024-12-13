@@ -26,3 +26,10 @@ interface IDamageUI     // 데미지 UI창에 띄우는거 관련 인터페이스
     public void SetDamage(int dmg);  // 받은 데미지를 띄우는 함수 
 
 }
+
+interface ISkill    // 스킬 관련 인터페이스
+{
+    public void MainSkillSet(); // 메인 스킬을 스킬 버튼있는 곳으로 세팅하는 함수 
+    public void MainSkill();    // 메인 스킬 함수
+
+}
