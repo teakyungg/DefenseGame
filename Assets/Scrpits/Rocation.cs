@@ -9,14 +9,13 @@ public class Rocation : MonoBehaviour , IRocation
     [SerializeField] Transform Target;
     Player player;
 
-    Transform StartRocation;
+    Quaternion StartRocation = new Quaternion(0, 0, 0, 1); // 처음 시작시 회전값 
 
     public float RocationSpeed { get; set; }
 
     void Awake()
     {
         player = GetComponent<Player>();
-        StartRocation = gameObject.transform;
         RocationSpeed = 10f;
     }
 
@@ -48,6 +47,7 @@ public class Rocation : MonoBehaviour , IRocation
 
     public void rocation(Transform target)
     {
+        
       
         if (target)
         {
@@ -57,11 +57,12 @@ public class Rocation : MonoBehaviour , IRocation
             player.Attack = true;
         }
 
-        else if (!target)
+        
+        else if (!player.Attack)
         {
-            Quaternion targetLocation = Quaternion.LookRotation(StartRocation.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetLocation, Time.deltaTime * RocationSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, StartRocation, Time.deltaTime * RocationSpeed);
         }
+        
 
     }
 
@@ -70,7 +71,7 @@ public class Rocation : MonoBehaviour , IRocation
     {
 
         if (Target && Target.gameObject.activeSelf == false) Reset();     // 공격하던 적이 비활성화 됬을때
-        if (enemyCheck || enemys.Count == 0) return;
+        if (enemyCheck || enemys.Count == 0) return;                     
 
         enemyCheck = true;
 
